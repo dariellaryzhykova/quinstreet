@@ -6,6 +6,6 @@ public class DriverSettings {
         Configuration.browser = GeneralConfigImpl.config.browser();
         Configuration.browserVersion = GeneralConfigImpl.config.browserVersion();
         Configuration.browserSize = GeneralConfigImpl.config.browserSize();
-        Configuration.headless = false;
+        //Configuration.headless = false;
     }
 }
