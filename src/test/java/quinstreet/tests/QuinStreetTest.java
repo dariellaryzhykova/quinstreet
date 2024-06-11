@@ -34,7 +34,7 @@ public class QuinStreetTest extends BaseTest{
         });
 
         step("Fill in the job position", () -> {
-            //switchTo().frame(0);
+            switchTo().frame(0);
             jobDescription.typeFirstName(firstName);
             jobDescription.typeLastName(lastName);
             jobDescription.typeEmail(email);
