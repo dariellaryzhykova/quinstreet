@@ -4,6 +4,8 @@
 ## Automation overview for QA Automation Engineer position: 
 https://www.quinstreet.com/careers/?__jvst=Job+Board&__jvsd=LinkedIn&gh_jid=6003639
 
+Check the test report from Allure by following a link: 
+
 ## Technology stack
 
 Java + JUnit5 + Selenide(based on Selenium) + Gradle
@@ -41,7 +43,7 @@ allure serve build/allure-results
 ```
 
 ## Contacts
-:world_map: <a target="_blank" href="https://www.linkedin.com/in/dariella-ryzhykova-3794b3139/">linkedin</a><br/>
-:phone +13125393027 <br/>
-:email dariella.ryzhykova@gmail.com <br/>
-:airplane: Telegram - @darielllla <br/>
+🔗 <a target="_blank" href="https://www.linkedin.com/in/dariella-ryzhykova-3794b3139/">linkedin</a><br/>
+📱+13125393027 <br/>
+📧 dariella.ryzhykova@gmail.com <br/>
+✈️ Telegram - @darielllla <br/>
