@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'io.qameta.allure' version '2.11.2'
+}
+
+group 'quinstreet'
+version '1.0'
+
+def selenideVersion = '6.19.1'
+def allureVersion = '2.27.0'
+
+allure {
+    version = allureVersion
+    autoconfigure = true
+    aspectjweaver = true
+    useJUnit5 {
+        version = allureVersion
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-rest-assured:$allureVersion",
+            "org.aspectj:aspectjweaver:1.9.22.1",
+            "org.junit.jupiter:junit-jupiter-api:5.8.1",
+            "org.aeonbits.owner:owner:1.0.12",
+            "io.github.bonigarcia:webdrivermanager:5.7.0")
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.8.1"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+
+    if (System.getProperty("threads") != null) {
+        systemProperties += [
+                'junit.jupiter.execution.parallel.enabled'                 : true,
+                'junit.jupiter.execution.parallel.mode.default'            : 'concurrent',
+                'junit.jupiter.execution.parallel.mode.classes.default'    : 'concurrent',
+                'junit.jupiter.execution.parallel.config.strategy'         : 'fixed',
+                'junit.jupiter.execution.parallel.config.fixed.parallelism': System.getProperty("threads").toInteger()
+        ]
+    }
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}

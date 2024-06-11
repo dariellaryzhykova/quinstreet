@@ -1,0 +1,47 @@
+name: quinstreet
+
+on: [push]
+
+jobs:
+  quinstreet:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Set up Selenoid
+        uses: Xotabu4/selenoid-github-action@v2
+        with:
+          browsers: chrome
+          version: latest
+
+      - name: Check Selenoid Status
+        run: curl http://localhost:4444/status
+
+      - name: Run tests with Gradle
+        run: |
+          ./gradlew clean test -Dselenide.remote=http://localhost:4444/wd/hub
+
+      - name: Generate Allure Report
+        run: ./gradlew allureReport
+
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v2
+        if: always()
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: gh-pages
