@@ -29,7 +29,7 @@ public class QuinStreetTest extends BaseTest{
     @Description("Fill in the job opening: QA Automation Engineer")
     void verifyApplyingForQAAutomationEngineer(){
         JobDescriptionPage jobDescription = new JobDescriptionPage();
-        step("Open \'QA Automation Engineer\' opening:", () -> {
+        step("Open \'QA Automation Engineer\' position:", () -> {
             open(QUIN_STREET_URL + "/careers/?__jvst=Job+Board&__jvsd=LinkedIn&gh_jid=6003639");
         });
 
